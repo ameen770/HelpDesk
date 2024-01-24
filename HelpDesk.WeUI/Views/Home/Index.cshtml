@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HelpDesk.WebUI.Models.ClientRequest>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This Page Show All Requests For All Customers</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestDescription)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestType)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RStatus)
+            </th>
+            @*<th style="font-size:14px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.ResponseDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.Response)
+            </th>*@
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.AppUserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RStatus)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.ResponseDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.Response)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppUser.UserName)
+                </td>
+                <td>
+                    @*<a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.RequestId"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.RequestId"> <i class="fas fa-info-circle"></i></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.RequestId"> <i class="far fa-trash-alt"></i></a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

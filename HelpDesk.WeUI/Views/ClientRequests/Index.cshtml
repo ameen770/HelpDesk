@@ -1,0 +1,109 @@
+﻿@model IEnumerable<HelpDesk.WebUI.Models.ClientRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"><i class="fas fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestDescription)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestType)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RStatus)
+            </th>
+            @*<th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.ResponseDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.Response)
+            </th>*@
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.AppUserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RStatus)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResponseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Response)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.AppUser.UserName)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.RequestId"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.RequestId"> <i class="fas fa-info-circle"></i></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.RequestId"> <i class="far fa-trash-alt"></i></a>
+                    @*<button data-id="@item.RequestId" class="btn btn-danger deleteBtn" type="button"> <i class="far fa-trash-alt"></i></button>*@
+                @*<a asp-action="Edit" asp-route-id="@item.RequestId" class="btn btn-facebook">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RequestId" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestId" class="btn btn-outline-danger">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<form id="deleteFrom" asp-action="Delete">
+    <input type="hidden" id="leaveTypeId" name="RequestId" />
+</form>
+
+
+@section Scripts{
+    <script>
+        $(function(){
+
+            $('.deleteBtn').click(function(e) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this record?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm) => {
+                        if(confirm){
+                            var btn = $(this);
+                            var id = btn.data("id");
+                            $('#leaveTypeId').val(id);
+                            $('#deleteFrom').submit();
+                        }
+                    });
+            });
+    </script>
+}

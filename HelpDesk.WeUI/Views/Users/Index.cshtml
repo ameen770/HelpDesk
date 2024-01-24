@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HelpDesk.WebUI.Models.AppUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"><i class="fas fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>*@
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayName("Password")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+                <td style="font-size:10px; font-weight:bold">
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"> <i class="fas fa-info-circle"></i></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"> <i class="far fa-trash-alt"></i></a>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

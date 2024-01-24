@@ -1,0 +1,66 @@
+﻿@model HelpDesk.WebUI.Models.ClientRequest
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ClientRequest</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.RequestDescription)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.RequestDescription)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.RequestType)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.RequestType)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.RStatus)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.RStatus)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.ResponseDate)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.ResponseDate)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.Response)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Response)
+        </dd>
+        <dt class="col-sm-4" style="font-size:20px; font-weight:bold">
+            @Html.DisplayNameFor(model => model.AppUserId)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.AppUser.UserName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RequestId" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-outline-info">Back to List</a>
+</div>

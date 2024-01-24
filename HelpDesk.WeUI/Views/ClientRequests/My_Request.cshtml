@@ -1,0 +1,102 @@
+﻿@model IEnumerable<HelpDesk.WebUI.Models.ClientRequest>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"><i class="fas fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestDescription)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestType)
+            </th>
+            @*<th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RStatus)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.ResponseDate)
+            </th>
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.Response)
+            </th>*@
+            <th style="font-size:14px; font-weight:bold">
+                @Html.DisplayNameFor(model => model.AppUserId)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestType)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.RStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResponseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Response)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.AppUser.UserName)
+            </td>
+                <td>
+                    @if (item.RStatus == HelpDesk.WebUI.Enum.RequestStatus.Accepted)
+                    {
+                        <span class="badge bg-success">Accepted</span>
+                    }
+                    else if (item.RStatus == HelpDesk.WebUI.Enum.RequestStatus.Rejected)
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Waiting</span>
+                    }
+                </td>
+
+                <td>
+                    @if (item.RStatus == HelpDesk.WebUI.Enum.RequestStatus.Waiting)
+                    {
+                        <a asp-action="ReviewDetails" class="btn btn-primary btn-sm" asp-route-id="@item.RequestId">Review</a>
+                    }
+                </td>
+                <td>
+                    @if (item.RStatus == HelpDesk.WebUI.Enum.RequestStatus.Waiting)
+                    {
+                        <a class="btn btn-warning" asp-action="Assigned" asp-route-id="@item.RequestId">Assigning <i class="fas fa-pencil-alt"></i></a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

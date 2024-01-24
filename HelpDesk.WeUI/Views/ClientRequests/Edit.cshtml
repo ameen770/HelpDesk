@@ -1,0 +1,66 @@
+﻿@model HelpDesk.WebUI.Models.ClientRequest
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Client Request</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RequestId" />
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="RequestDescription" class="control-label"></label>
+                <input asp-for="RequestDescription" class="form-control" />
+                <span asp-validation-for="RequestDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="RequestType" class="control-label"></label>
+                <input asp-for="RequestType" class="form-control" />
+                <span asp-validation-for="RequestType" class="text-danger"></span>
+            </div>
+            @*<div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="RStatus" class="control-label"></label>
+                <input asp-for="RStatus" class="form-control" />
+                <span asp-validation-for="RStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="RequestDate" class="control-label"></label>
+                <input asp-for="RequestDate" class="form-control" />
+                <span asp-validation-for="RequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="ResponseDate" class="control-label"></label>
+                <input asp-for="ResponseDate" class="form-control" />
+                <span asp-validation-for="ResponseDate" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="Response" class="control-label"></label>
+                <input asp-for="Response" class="form-control" />
+                <span asp-validation-for="Response" class="text-danger"></span>
+            </div>*@
+            <div class="form-group" style="font-size:20px; font-weight:bold">
+                <label asp-for="AppUserId" class="control-label"></label>
+                <select asp-for="AppUserId" class="form-control" asp-items="ViewBag.AppUserId"></select>
+                <span asp-validation-for="AppUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-info">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
